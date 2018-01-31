@@ -9,7 +9,7 @@ from scipy import misc
 
 def readPicture(pictureName):
     """Converts 'Image array' to binary array"""
-    return np.array(misc.imread(pictureName)[:,:,0])/255
+    return np.array(misc.imread(pictureName)[:,:])/255
 
 def savePicture(pictureName,D):
     """Converts 'Image array' to binary array"""
@@ -21,7 +21,7 @@ a=1 #m
 z=100 #m
 lamb=2 #m
 
-pictureName="mandelbrot"
+pictureName="Fractales/mandelbrot"
 
 D=readPicture(pictureName+".png")
 I=abs(fftshift(fft2(D)))
