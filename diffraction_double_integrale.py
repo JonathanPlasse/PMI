@@ -3,15 +3,16 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
-from numba import jit
+from numba import jit #Il faut utiliser anaconda pour avoir ce module
 
+#Constantes de modélisation
 a=1 #m
 z=100 #m
 lamb=2 #m
 k=2*np.pi/lamb
 
-size=a*64
-ech=500
+size=a*32
+ech=250
 n=20
 isize = (ech-1)/4/size*lamb*z
 
@@ -24,20 +25,27 @@ y = np.linspace(-isize,isize,ech)
 oaxis = np.array([-size,size,-size,size])
 iaxis = np.array([-isize,isize,-isize,isize])
 
+
 @jit
 def distribc(x,y):
+    """Délimite où se trouve l'ouverture sur le plan de diffraction"""
     if abs(y)<=a and abs(y)<=a:
         return 1
     else:
         return 0
 
+
 @jit
 def fc(X,Y,x,y):
+    """Définition de la fonction à intégrer"""
     return distribc(X,Y)*np.cos(-2*np.pi*(x*X+y*Y)/(lamb*z))
 
 @jit
 def integraleDoubleRectangle(f,x,y,n):
+    """Méthode de double intégration utilisant la somme de Riemann"""
     I=np.zeros((ech,ech))
+    #Il faut que l'ouverture soit compris dans [-a;a]^2
+    #et que l'ouverture utilise tout cette espace de préférence.
     X=np.linspace(-a,a,n)
     Y=np.linspace(-a,a,n)
     for xi in range(ech):
@@ -49,6 +57,7 @@ def integraleDoubleRectangle(f,x,y,n):
 
 @jit
 def integraleDoubleTrapeze(f,x,y,n):
+    """Méthode de double intégration utilisant la méthode des trapèze"""
     I=np.zeros((ech,ech))
     X=np.linspace(-a,a,n)[1:n-1]
     Y=np.linspace(-a,a,n)[1:n-1]
@@ -68,6 +77,7 @@ def integraleDoubleTrapeze(f,x,y,n):
                     I[xi,yi]+=fc(Xi,Yi,x[xi],y[yi])
     return I
 
+#Calcul des figures de diffractions
 D=np.array([[distribc(X[i],Y[j]) for j in range(ech)] for i in range(ech)])
 
 I1=integraleDoubleRectangle(fc,x,y,n)
@@ -76,15 +86,13 @@ I1=(abs(I1)/ech)**2
 I2=integraleDoubleTrapeze(fc,x,y,n)
 I2=(abs(I2)/ech)**2
 
-f, (ax1, ax2, ax3) = plt.subplots(1, 3)
+#Affichage des figures de diffractions
+f, (ax1, ax2) = plt.subplots(1, 2)
 
 ax1.imshow(I1, extent=iaxis)
 ax1.axis(iaxis)
 
 ax2.imshow(I2, extent=iaxis)
 ax2.axis(iaxis)
-
-ax3.imshow(I3, extent=iaxis)
-ax3.axis(iaxis)
 
 plt.show()
