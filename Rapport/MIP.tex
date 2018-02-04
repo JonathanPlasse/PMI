@@ -143,4 +143,24 @@ E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}ab
 
 \subsection{Plane wave}
 
+For a plane wave:
+
+\[E(x',y')=Ae^{j(\omega t-kz)}\]
+
+\[
+E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}
+\iint e^{-2\pi j(f_xx'+f_yy')}
+Ae^{j(\omega t-kz)}\mathrm{d}x'\mathrm{d}y'
+\]
+
+\[
+E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)} Ae^{j(\omega t-kz)}
+\underbrace{
+	\iint e^{-2\pi j(f_xx'+f_yy')}
+	\mathrm{d}x'\mathrm{d}y'
+}_\text{divergent term}
+\]
+
+The term divergent says that all the image plane is received by light, there is not really any phenomenon of diffraction (no principle of causality $\Rightarrow$ diffraction if there is a cause to it: here it does not there is not any). Limit case that confirming the model.
+
 \end{document}}
