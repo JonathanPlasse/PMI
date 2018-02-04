@@ -77,13 +77,36 @@ def integraleDoubleTrapeze(f,x,y,n):
                     I[xi,yi]+=fc(Xi,Yi,x[xi],y[yi])
     return I
 
+@jit
+def aux(f,xi,yi,Xi,Y):
+    s = 0
+    s =(fc(Xi,-a,x[xi],y[yi])+fc(Xi,a,x[xi],y[yi]))/2
+    for Yi in Y:
+        s+=fc(Xi,Yi,x[xi],y[yi])
+    return s
+
+@jit
+def testIntegraleDoubleTrapeze(f,x,y,n):
+    """Méthode de double intégration utilisant la méthode des trapèze"""
+    I=np.zeros((ech,ech))
+    X=np.linspace(-a,a,n)[1:n-1]
+    Y=np.linspace(-a,a,n)[1:n-1]
+    
+    for xi in range(ech):
+        for yi in range(ech):
+            I[xi,yi]+=(aux(f,xi,yi,-a,Y)+aux(f,xi,yi,a,Y))/2
+            for Xi in X:
+                I[xi,yi]+=aux(f,xi,yi,Xi,Y)
+            
+    return I
+
 #Calcul des figures de diffractions
 D=np.array([[distribc(X[i],Y[j]) for j in range(ech)] for i in range(ech)])
 
 I1=integraleDoubleRectangle(fc,x,y,n)
 I1=(abs(I1)/ech)**2
 
-I2=integraleDoubleTrapeze(fc,x,y,n)
+I2=testIntegraleDoubleTrapeze(fc,x,y,n)
 I2=(abs(I2)/ech)**2
 
 #Affichage des figures de diffractions
