@@ -61,7 +61,7 @@ The Fraunhofer diffraction is an approximation in far-field, namely observation 
 \end{center}
 
 \[r=\sqrt{z^2+(x-x')^2+(y-y')^2}\]
-\[r=z\sqrt{1+\frac{(x-x')}{z_i}^2+\frac{(y-y')}{z_i}^2}\]
+\[r=z\sqrt{1+\left(\frac{x-x'}{z}\right)^2+\left(\frac{y-y'}{z}\right)^2}\]
 
 In Fraunhofer’s regime:
 
@@ -69,7 +69,7 @@ In Fraunhofer’s regime:
 
 We can carry out a development limited to order 1: 
 
-\[r=z\left(1+\frac{(x-x')}{2z_i}^2+\frac{(y-y')}{2z_i}^2\right)\]
+\[r=z\left(1+\frac{1}{2}\left(\frac{x-x'}{z}\right)^2+\frac{1}{2}\left(\frac{y-y'}{z}\right)^2\right)\]
 
 After development:
 
@@ -150,7 +150,8 @@ For a rectangular opening E(x’,y’)= 1 only if
 
 \[
 E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}
-\times \iint\limits_S e^{-2\pi j(f_xx'+f_yy')}\mathrm{d}x'\mathrm{d}y'
+\times \int_{-\frac{a}{2}}^\frac{a}{2} \int_{-\frac{b}{2}}^\frac{b}{2}
+ e^{-2\pi j(f_xx'+f_yy')}\mathrm{d}x'\mathrm{d}y'
 \]
 
 Separation of variables:
@@ -216,6 +217,69 @@ E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}
 E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}
 \times b\sinc\left(2\pi f_y \frac{b}{2}\right)
 \times \epsilon
+\]
+
+	\subsection{Circular opening}
+\begin{center}
+\includegraphics[scale=0.3]{../Ressources/schema-4-2.png}
+\end{center}
+
+\[
+E(\rho,\omega)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{\rho^2}{2z}\right)}
+\times \iint e^{-jk\frac{\rho\rho'\cos(\omega-\omega')}{z}}
+E(\rho',\omega')\rho' \mathrm{d}\rho'\mathrm{d}\omega'
+\]
+
+\[
+E(\rho,\omega)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{\rho^2}{2z}\right)}
+\times \int_0^R \int_0^{2\pi} e^{-jk\frac{\rho\rho'\cos(\omega-\omega')}{z}}
+\rho' \mathrm{d}\rho'\mathrm{d}\omega'
+\]
+
+Let $u=-\frac{k\rho\rho'}{z}$, $\varphi=\omega-\omega'$ and $\nu=-\frac{k\rho R}{z}$.
+
+\[
+E(\rho,\omega)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{\rho^2}{2z}\right)}
+\left(\frac{z}{k\rho}\right)^2
+\times \int_0^\nu \int_0^{2\pi} e^{ju\cos(\varphi)}
+u \mathrm{d}u\mathrm{d}\varphi
+\]
+
+Then we use the following Bessel integral:
+
+\[J_0(u)=\frac{1}{2\pi}\int_0^{2\pi} e^{ju\cos(\varphi)}\mathrm{d}\varphi\]
+
+We obtain:
+
+\[
+E(\rho,\omega)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{\rho^2}{2z}\right)}
+\left(\frac{z}{k\rho}\right)^2
+\times 2\pi \int_0^\nu u J_0(u) \mathrm{d}u
+\]
+
+Or:
+
+\[\nu J_1(\nu)=\int_0^\nu u J_0(u) \mathrm{d}u\]
+
+So:
+
+\[
+E(\rho,\omega)=\frac{k}{jz} e^{jk\left(z+\frac{\rho^2}{2z}\right)}
+\left(\frac{z}{k\rho}\right)^2
+\times \nu J_1(\nu)
+\]
+
+$J_1$ is an odd function so:
+
+\[
+E(\rho,\omega)=\frac{k}{jz} e^{jk\left(z+\frac{\rho^2}{2z}\right)}
+\left(\frac{z}{k\rho}\right)^2
+\times \frac{k\rho R}{z} \times J_1\left(\frac{k\rho R}{z}\right)
+\]
+
+\[
+E(\rho,\omega)=\frac{R}{j\rho} e^{jk\left(z+\frac{\rho^2}{2z}\right)}
+J_1\left(\frac{k\rho R}{z}\right)
 \]
 
 \end{document}}
