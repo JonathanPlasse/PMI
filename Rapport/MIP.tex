@@ -49,6 +49,60 @@ And by integration on the surface of the opening of the slot, we obtain:
 
 	\subsection{The diffraction of Fraunhofer}
 The Fraunhofer diffraction is an approximation in far-field, namely observation at great distance. The radius of curvature of the diffracted waves is therefore very large, so that they can be considered as plane waves. This approximation can also be done when one wants the diffraction pattern in the image focal plane of a converging lens. The advantage is that it allows us to go through a Fourier transform calculation already implemented in a python library.
-/includegraphics{
+
+\begin{center}
+\includegraphics[scale=0.32]{../Ressources/schema-1.png}
+\includegraphics[scale=0.32]{../Ressources/schema-2.png}
+\end{center}
+
+\[r=\sqrt{z^2+(x-x')^2+(y-y')^2}\]
+\[r=z\sqrt{1+\frac{(x-x')}{z_i}^2+\frac{(y-y')}{z_i}^2}\]
+
+In Fraunhofer’s regime:
+
+\[z^2\gg(x-x')^2+(y-y')^2\]
+
+We can carry out a development limited to order 1: 
+
+\[r=z\left(1+\frac{(x-x')}{2z_i}^2+\frac{(y-y')}{2z_i}^2\right)\]
+
+After development:
+
+\[r \approx z+\frac{x^2+y^2}{2z}+\frac{x'^2+y'^2}{2z}-\frac{xx'+yy'}{z}\]
+
+Approximation valid in the Fresnel region. 
+
+If we are very far from the source, the last term becomes negligible and we find ourselves in the Fraunhofer region.
+
+\begin{center}
+\includegraphics[scale=0.32]{../Ressources/schema-3.png}
+\end{center}
+
+\[r \approx z+\frac{x^2+y^2}{2z}-\frac{xx'+yy'}{z}\]
+
+\[E(x,y)=\frac{1}{j\lambda} \iint \frac{e^{jkr}}{r}E(x',y')dx'dy'\]
+
+With $r\approx z$ at the denominator for the damping term of the wave and $r \approx z+\frac{x^2+y^2}{2z}-\frac{xx'+yy'}{z}$ for the term of phase:
+
+\[E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}\iint e^{-jk\frac{xx'+yy'}{z}}E(x',y')dx'dy'\]
+
+Let $f_x=\frac{x}{\lambda z}$ and $f_x=\frac{y}{\lambda z}$
+
+\[E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}\underbrace{\iint e^{-2\pi j(f_xx'+f_yy')}E(x',y')dx'dy'}_\text{Fourier's transformation}\]
+
+Polar coordinates in the Fraunhofer regime:
+
+\[x=\rho \cos(\omega) \]
+\[y=\rho \sin(\omega) \]
+\[x'=\rho \cos(\omega') \]
+\[y'=\rho \sin(\omega') \]
+
+Elementary area: $dxdy=\rho d\rho d\omega$
+
+So, we use the expression Cartesian:
+
+\[E(\rho,\omega)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{\rho^2 \cos(\omega)^2+\rho^2 \sin(\omega)^2}{2z}\right)}\iint e^{-jk\frac{\rho \cos(\omega)\rho' \cos(\omega')+\rho \sin(\omega)\rho' \sin(\omega)'}{z}}E(\rho',\omega')\rho' d\rho'd\omega'\]
+
+\[E(\rho,\omega)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{\rho^2}{2z}\right)}\iint e^{-jk\frac{\rho\rho'\cos(\omega-\omega')}{z}}E(\rho',\omega')\rho' d\rho'd\omega'\]
 
 \end{document}
