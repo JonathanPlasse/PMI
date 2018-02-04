@@ -34,11 +34,11 @@ Fresnel diffraction or near field diffraction is a near field description of the
 
 The equation of propagation of a spherical wave is:
 
-\[E(r,t)= \frac{E_0}{r} e^{j(kr-\omega t)}\]
+\[E(r,t)= \frac{E_0}{r} \exp\left(j(kr-\omega t)\right)\]
 
 The elementary variation of E (r, t) by the principle of Huygens Fresnel:
 
-\[\mathrm{d}E=\frac{e^{jkr}}{r} E(x',y') \mathrm{d}x' \mathrm{d}y'\]
+\[\mathrm{d}E=\frac{\exp\left(jkr\right)}{r} E(x',y') \mathrm{d}x' \mathrm{d}y'\]
 
 By the use of the Helmoltz equation in a homogeneous medium: 
 
@@ -48,7 +48,7 @@ And by integration on the surface of the opening of the slot, we obtain:
 
 \[
 E(x,y)=\frac{1}{j\lambda}
-\times \iint \frac{e^{jkr}}{r}
+\times \iint \frac{\exp\left(jkr\right)}{r}
 E(x',y')\mathrm{d}x'\mathrm{d}y'
 \]
 
@@ -87,24 +87,24 @@ If we are very far from the source, the last term becomes negligible and we find
 
 \[
 E(x,y)=\frac{1}{j\lambda} 
-\times \iint \frac{e^{jkr}}{r}
+\times \iint \frac{\exp\left(jkr\right)}{r}
 E(x',y')\mathrm{d}x'\mathrm{d}y'
 \]
 
 With $r\approx z$ at the denominator for the damping term of the wave and $r \approx z+\frac{x^2+y^2}{2z}-\frac{xx'+yy'}{z}$ for the term of phase:
 
 \[
-E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}
-\times \iint e^{-jk\frac{xx'+yy'}{z}}
+E(x,y)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{x^2+y^2}{2z}\right)\right)
+\times \iint \exp\left(-jk\frac{xx'+yy'}{z}\right)
 E(x',y')\mathrm{d}x'\mathrm{d}y'
 \]
 
 Let $f_x=\frac{x}{\lambda z}$ and $f_x=\frac{y}{\lambda z}$
 
 \[
-E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}
+E(x,y)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{x^2+y^2}{2z}\right)\right)
 \times \underbrace{
-	\iint e^{-2\pi j(f_xx'+f_yy')}E(x',y')\mathrm{d}x'\mathrm{d}y'
+	\iint \exp\left(-2\pi j(f_xx'+f_yy')\right)E(x',y')\mathrm{d}x'\mathrm{d}y'
 }_\text{Fourier's transformation}
 \]
 
@@ -120,14 +120,14 @@ Elementary area: $\mathrm{d}x\mathrm{d}y=\rho \mathrm{d}\rho \mathrm{d}\omega$
 So, we use the expression Cartesian:
 
 \[
-E(\rho,\omega)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{\rho^2 \cos(\omega)^2+\rho^2 \sin(\omega)^2}{2z}\right)}
-\times \iint e^{-jk\frac{\rho \cos(\omega)\rho' \cos(\omega')+\rho \sin(\omega)\rho' \sin(\omega)'}{z}}
+E(\rho,\omega)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{\rho^2 \cos(\omega)^2+\rho^2 \sin(\omega)^2}{2z}\right)\right)
+\times \iint \exp\left(-jk\frac{\rho \cos(\omega)\rho' \cos(\omega')+\rho \sin(\omega)\rho' \sin(\omega)'}{z}\right)
 E(\rho',\omega')\rho' \mathrm{d}\rho'\mathrm{d}\omega'
 \]
 
 \[
-E(\rho,\omega)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{\rho^2}{2z}\right)}
-\times \iint e^{-jk\frac{\rho\rho'\cos(\omega-\omega')}{z}}
+E(\rho,\omega)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{\rho^2}{2z}\right)\right)
+\times \iint \exp\left(-jk\frac{\rho\rho'\cos(\omega-\omega')}{z}\right)
 E(\rho',\omega')\rho' \mathrm{d}\rho'\mathrm{d}\omega'
 \]
 
@@ -149,23 +149,23 @@ For a rectangular opening E(x’,y’)= 1 only if
 \end{center}
 
 \[
-E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}
+E(x,y)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{x^2+y^2}{2z}\right)\right)
 \times \int_{-\frac{a}{2}}^\frac{a}{2} \int_{-\frac{b}{2}}^\frac{b}{2}
- e^{-2\pi j(f_xx'+f_yy')}\mathrm{d}x'\mathrm{d}y'
+ \exp\left(-2\pi j(f_xx'+f_yy')\right)\mathrm{d}x'\mathrm{d}y'
 \]
 
 Separation of variables:
 
 \[
-E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}
-\times \int_{-\frac{a}{2}}^\frac{a}{2} e^{-2\pi jf_xx'}\mathrm{d}x'
-\times \int_{-\frac{b}{2}}^\frac{b}{2} e^{-2\pi jf_yy'}\mathrm{d}y'
+E(x,y)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{x^2+y^2}{2z}\right)\right)
+\times \int_{-\frac{a}{2}}^\frac{a}{2} \exp\left(-2\pi jf_xx'\right)\mathrm{d}x'
+\times \int_{-\frac{b}{2}}^\frac{b}{2} \exp\left(-2\pi jf_yy'\right)\mathrm{d}y'
 \]
 
 After Fourier’s transformation:
 
 \[
-E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}
+E(x,y)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{x^2+y^2}{2z}\right)\right)
 \times a\sinc\left(2\pi f_x \frac{a}{2}\right)
 \times b\sinc\left(2\pi f_y \frac{b}{2}\right)
 \]
@@ -173,18 +173,18 @@ E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}
 	\subsection{Plane wave}
 For a plane wave:
 
-\[E(x',y')=Ae^{j(\omega t-kz)}\]
+\[E(x',y')=A\exp\left(j(\omega t-kz)\right)\]
 
 \[
-E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}
-\times \iint e^{-2\pi j(f_xx'+f_yy')}
-Ae^{j(\omega t-kz)}\mathrm{d}x'\mathrm{d}y'
+E(x,y)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{x^2+y^2}{2z}\right)\right)
+\times \iint \exp\left(-2\pi j(f_xx'+f_yy')\right)
+A\exp\left(j(\omega t-kz)\right)\mathrm{d}x'\mathrm{d}y'
 \]
 
 \[
-E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)} Ae^{j(\omega t-kz)}
+E(x,y)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{x^2+y^2}{2z}\right)\right) A\exp\left(j(\omega t-kz)\right)
 \times \underbrace{
-	\iint e^{-2\pi j(f_xx'+f_yy')}
+	\iint \exp\left(-2\pi j(f_xx'+f_yy')\right)
 	\mathrm{d}x'\mathrm{d}y'
 }_\text{divergent term}
 \]
@@ -197,24 +197,24 @@ For a slot, we have the case of a rectangular opening except that $a\rightarrow 
 Thus
 	
 \[
-E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}
-\times \lim_{a\rightarrow 0} \iint\limits_S e^{-2\pi j(f_xx'+f_yy')}\mathrm{d}x'\mathrm{d}y'
+E(x,y)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{x^2+y^2}{2z}\right)\right)
+\times \lim_{a\rightarrow 0} \iint\limits_S \exp\left(-2\pi j(f_xx'+f_yy')\right)\mathrm{d}x'\mathrm{d}y'
 \]
 
 \[
-E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}
-\times \int_{-\frac{b}{2}}^\frac{b}{2} e^{-2\pi jf_yy'}\mathrm{d}y'
-\times \lim_{a\rightarrow 0} \int_{-\frac{a}{2}}^\frac{a}{2} e^{-2\pi jf_xx'}\mathrm{d}x'
+E(x,y)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{x^2+y^2}{2z}\right)\right)
+\times \int_{-\frac{b}{2}}^\frac{b}{2} \exp\left(-2\pi jf_yy'\right)\mathrm{d}y'
+\times \lim_{a\rightarrow 0} \int_{-\frac{a}{2}}^\frac{a}{2} \exp\left(-2\pi jf_xx'\right)\mathrm{d}x'
 \]
 
 \[
-E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}
+E(x,y)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{x^2+y^2}{2z}\right)\right)
 \times b\sinc\left(2\pi f_y \frac{b}{2}\right)
 \times \lim_{a\rightarrow 0}a\sinc\left(2\pi f_x \frac{a}{2}\right)
 \]
 
 \[
-E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}
+E(x,y)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{x^2+y^2}{2z}\right)\right)
 \times b\sinc\left(2\pi f_y \frac{b}{2}\right)
 \times \epsilon
 \]
@@ -225,34 +225,34 @@ E(x,y)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{x^2+y^2}{2z}\right)}
 \end{center}
 
 \[
-E(\rho,\omega)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{\rho^2}{2z}\right)}
-\times \iint e^{-jk\frac{\rho\rho'\cos(\omega-\omega')}{z}}
+E(\rho,\omega)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{\rho^2}{2z}\right)\right)
+\times \iint \exp\left(-jk\frac{\rho\rho'\cos(\omega-\omega')}{z}\right)
 E(\rho',\omega')\rho' \mathrm{d}\rho'\mathrm{d}\omega'
 \]
 
 \[
-E(\rho,\omega)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{\rho^2}{2z}\right)}
-\times \int_0^R \int_0^{2\pi} e^{-jk\frac{\rho\rho'\cos(\omega-\omega')}{z}}
+E(\rho,\omega)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{\rho^2}{2z}\right)\right)
+\times \int_0^R \int_0^{2\pi} \exp\left(-jk\frac{\rho\rho'\cos(\omega-\omega')}{z}\right)
 \rho' \mathrm{d}\rho'\mathrm{d}\omega'
 \]
 
 Let $u=-\frac{k\rho\rho'}{z}$, $\varphi=\omega-\omega'$ and $\nu=-\frac{k\rho R}{z}$.
 
 \[
-E(\rho,\omega)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{\rho^2}{2z}\right)}
+E(\rho,\omega)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{\rho^2}{2z}\right)\right)
 \left(\frac{z}{k\rho}\right)^2
-\times \int_0^\nu \int_0^{2\pi} e^{ju\cos(\varphi)}
+\times \int_0^\nu \int_0^{2\pi} \exp\left(ju\cos(\varphi)\right)
 u \mathrm{d}u\mathrm{d}\varphi
 \]
 
 Then we use the following Bessel integral:
 
-\[J_0(u)=\frac{1}{2\pi}\int_0^{2\pi} e^{ju\cos(\varphi)}\mathrm{d}\varphi\]
+\[J_0(u)=\frac{1}{2\pi}\int_0^{2\pi} \exp\left(ju\cos(\varphi)\right)\mathrm{d}\varphi\]
 
 We obtain:
 
 \[
-E(\rho,\omega)=\frac{1}{j\lambda z} e^{jk\left(z+\frac{\rho^2}{2z}\right)}
+E(\rho,\omega)=\frac{1}{j\lambda z} \exp\left(jk\left(z+\frac{\rho^2}{2z}\right)\right)
 \left(\frac{z}{k\rho}\right)^2
 \times 2\pi \int_0^\nu u J_0(u) \mathrm{d}u
 \]
@@ -264,7 +264,7 @@ Or:
 So:
 
 \[
-E(\rho,\omega)=\frac{k}{jz} e^{jk\left(z+\frac{\rho^2}{2z}\right)}
+E(\rho,\omega)=\frac{k}{jz} \exp\left(jk\left(z+\frac{\rho^2}{2z}\right)\right)
 \left(\frac{z}{k\rho}\right)^2
 \times \nu J_1(\nu)
 \]
@@ -272,13 +272,13 @@ E(\rho,\omega)=\frac{k}{jz} e^{jk\left(z+\frac{\rho^2}{2z}\right)}
 $J_1$ is an odd function so:
 
 \[
-E(\rho,\omega)=\frac{k}{jz} e^{jk\left(z+\frac{\rho^2}{2z}\right)}
+E(\rho,\omega)=\frac{k}{jz} \exp\left(jk\left(z+\frac{\rho^2}{2z}\right)\right)
 \left(\frac{z}{k\rho}\right)^2
 \times \frac{k\rho R}{z} \times J_1\left(\frac{k\rho R}{z}\right)
 \]
 
 \[
-E(\rho,\omega)=\frac{R}{j\rho} e^{jk\left(z+\frac{\rho^2}{2z}\right)}
+E(\rho,\omega)=\frac{R}{j\rho} \exp\left(jk\left(z+\frac{\rho^2}{2z}\right)\right)
 J_1\left(\frac{k\rho R}{z}\right)
 \]
 

@@ -7,11 +7,11 @@ from numba import jit #Il faut utiliser anaconda pour avoir ce module
 
 #Constantes de modélisation
 a=1 #m
-z=100 #m
-lamb=2 #m
+z=10 #m
+lamb=1 #m
 k=2*np.pi/lamb
 
-size=a*32
+size=a*8
 ech=250
 n=20
 isize = (ech-1)/4/size*lamb*z
@@ -38,7 +38,7 @@ def distribc(x,y):
 @jit
 def fc(X,Y,x,y):
     """Définition de la fonction à intégrer"""
-    return distribc(X,Y)*np.cos(-2*np.pi*(x*X+y*Y)/(lamb*z))
+    return distribc(X,Y)*np.cos(-2*np.pi*np.sqrt(z**2+(x-X)**2+(y-Y)**2)/lamb)/np.sqrt(z**2+(x-X)**2+(y-Y)**2)
 
 @jit
 def integraleDoubleRectangle(f,x,y,n):
@@ -106,8 +106,8 @@ D=np.array([[distribc(X[i],Y[j]) for j in range(ech)] for i in range(ech)])
 I1=integraleDoubleRectangle(fc,x,y,n)
 I1=(abs(I1)/ech)**2
 
-I2=testIntegraleDoubleTrapeze(fc,x,y,n)
-I2=(abs(I2)/ech)**2
+#I2=testIntegraleDoubleTrapeze(fc,x,y,n)
+#I2=(abs(I2)/ech)**2
 
 #Affichage des figures de diffractions
 f, (ax1, ax2) = plt.subplots(1, 2)
@@ -115,7 +115,7 @@ f, (ax1, ax2) = plt.subplots(1, 2)
 ax1.imshow(I1, extent=iaxis)
 ax1.axis(iaxis)
 
-ax2.imshow(I2, extent=iaxis)
-ax2.axis(iaxis)
+#ax2.imshow(I2, extent=iaxis)
+#ax2.axis(iaxis)
 
 plt.show()
