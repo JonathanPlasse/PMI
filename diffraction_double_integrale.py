@@ -84,7 +84,7 @@ ax1.axis(iaxis)
 ax2.imshow(I2, extent=iaxis)
 ax2.axis(iaxis)
 
-plt.imshow(I1-I2, extent=iaxis)
-plt.colorbar()
+ax3.imshow(I3, extent=iaxis)
+ax3.axis(iaxis)
 
 plt.show()
