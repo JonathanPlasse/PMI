@@ -56,27 +56,27 @@ def ESquare(x,y,sidelength) :
 def SquareApertureCallBack() :
     global nbpx
     global a
-    filepath=tkfd.asksaveasfile(defaultextension=".png")
-    if filepath.name :
-        square=np.zeros([nbpx,nbpx])
-        squaresidelength=tksd.askinteger(title="Aperture size", prompt="Enter the size of the aperture")
-        x=np.linspace(-nbpx,nbpx,nbpx) #used to 'transform' image array indices into usual coordinates, with the origin at the center of the image
-        y=np.linspace(-nbpx,nbpx,nbpx) #used to 'transform' image array indices into usual coordinates, with the origin at the center of the image
-        for i in range(nbpx) :
-            for j in range(nbpx) :
-                square[i][j]=ESquare(x[i],y[j],squaresidelength)
-        apertureaxis = np.array([-a,a,-a,a])
-        plt.figure()
-        plt.imshow(square,cmap=cm.gray,extent=apertureaxis)
-        yn=tkmb.askyesno(title="Save?", message="Do you want to save this figure ?")
-        if yn :
+    square=np.zeros([nbpx,nbpx])
+    squaresidelength=tksd.askinteger(title="Aperture size", prompt="Enter the size of the aperture")
+    x=np.linspace(-nbpx,nbpx,nbpx) #used to 'transform' image array indices into usual coordinates, with the origin at the center of the image
+    y=np.linspace(-nbpx,nbpx,nbpx) #used to 'transform' image array indices into usual coordinates, with the origin at the center of the image
+    for i in range(nbpx) :
+        for j in range(nbpx) :
+            square[i][j]=ESquare(x[i],y[j],squaresidelength)
+    apertureaxis = np.array([-a,a,-a,a])
+    plt.figure()
+    plt.imshow(square,cmap=cm.gray,extent=apertureaxis)
+    yn=tkmb.askyesno(title="Save?", message="Do you want to save this figure ?")
+    if yn :
+        filepath=tkfd.asksaveasfile(defaultextension=".png")
+        if filepath.name :
             squareimg=np.zeros([nbpx,nbpx,3],dtype=np.uint8)
             for i in range(nbpx) :
                 for j in range(nbpx) :
                     for k in range(3) :
                        squareimg[i][j][k]=int(square[i][j]*255)
             imsave(filepath.name,squareimg)
-        plt.close()
+    plt.close()
         
 #Rectangle aperture
 def ERect(x,y,sidea,sideb) :
@@ -90,28 +90,28 @@ def ERect(x,y,sidea,sideb) :
 def RectApertureCallBack() :
     global nbpx
     global a
-    filepath=tkfd.asksaveasfile(defaultextension=".png")
-    if filepath.name :
-        rectangle=np.zeros([nbpx,nbpx])
-        rectsidea=tksd.askinteger(title="Aperture size", prompt="Enter the height of the aperture")
-        rectsideb=tksd.askinteger(title="Aperture size", prompt="Enter the width of the aperture")
-        x=np.linspace(-nbpx,nbpx,nbpx) #used to 'transform' image array indices into usual coordinates, with the origin at the center of the image
-        y=np.linspace(-nbpx,nbpx,nbpx) #used to 'transform' image array indices into usual coordinates, with the origin at the center of the image
-        for i in range(nbpx) :
-            for j in range(nbpx) :
-                rectangle[i][j]=ERect(x[i],y[j],rectsidea,rectsideb)
-        apertureaxis = np.array([-a,a,-a,a])
-        plt.figure()
-        plt.imshow(rectangle,cmap=cm.gray,extent=apertureaxis)
-        yn=tkmb.askyesno(title="Save?", message="Do you want to save this figure ?")
-        if yn :
+    rectangle=np.zeros([nbpx,nbpx])
+    rectsidea=tksd.askinteger(title="Aperture size", prompt="Enter the height of the aperture")
+    rectsideb=tksd.askinteger(title="Aperture size", prompt="Enter the width of the aperture")
+    x=np.linspace(-nbpx,nbpx,nbpx) #used to 'transform' image array indices into usual coordinates, with the origin at the center of the image
+    y=np.linspace(-nbpx,nbpx,nbpx) #used to 'transform' image array indices into usual coordinates, with the origin at the center of the image
+    for i in range(nbpx) :
+        for j in range(nbpx) :
+            rectangle[i][j]=ERect(x[i],y[j],rectsidea,rectsideb)
+    apertureaxis = np.array([-a,a,-a,a])
+    plt.figure()
+    plt.imshow(rectangle,cmap=cm.gray,extent=apertureaxis)
+    yn=tkmb.askyesno(title="Save?", message="Do you want to save this figure ?")
+    if yn :
+        filepath=tkfd.asksaveasfile(defaultextension=".png")
+        if filepath.name :
             rectimg=np.zeros([nbpx,nbpx,3],dtype=np.uint8)
             for i in range(nbpx) :
                 for j in range(nbpx) :
                     for k in range(3) :
                         rectimg[i][j][k]=int(rectangle[i][j]*255)
             imsave(filepath.name,rectimg)
-        plt.close()
+    plt.close()
     
 #Circular aperture
 def ECirc(x,y,r) :
@@ -125,27 +125,27 @@ def ECirc(x,y,r) :
 def CircleApertureCallBack() :
     global nbpx
     global a
-    filepath=tkfd.asksaveasfile(defaultextension=".png")
-    if filepath.name :
-        circle=np.zeros([nbpx,nbpx])
-        radius=tksd.askinteger(title="Aperture size", prompt="Enter the radius of the aperture")
-        x=np.linspace(-nbpx,nbpx,nbpx) #used to 'transform' image array indices into usual coordinates, with the origin at the center of the image
-        y=np.linspace(-nbpx,nbpx,nbpx) #used to 'transform' image array indices into usual coordinates, with the origin at the center of the image
-        for i in range(nbpx) :
-            for j in range(nbpx) :
-                circle[i][j]=ECirc(x[i],y[j],radius)
-        apertureaxis = np.array([-a,a,-a,a])
-        plt.figure()
-        plt.imshow(circle,cmap=cm.gray,extent=apertureaxis)
-        yn=tkmb.askyesno(title="Save?", message="Do you want to save this figure ?")
-        if yn :
+    circle=np.zeros([nbpx,nbpx])
+    radius=tksd.askinteger(title="Aperture size", prompt="Enter the radius of the aperture")
+    x=np.linspace(-nbpx,nbpx,nbpx) #used to 'transform' image array indices into usual coordinates, with the origin at the center of the image
+    y=np.linspace(-nbpx,nbpx,nbpx) #used to 'transform' image array indices into usual coordinates, with the origin at the center of the image
+    for i in range(nbpx) :
+        for j in range(nbpx) :
+            circle[i][j]=ECirc(x[i],y[j],radius)
+    apertureaxis = np.array([-a,a,-a,a])
+    plt.figure()
+    plt.imshow(circle,cmap=cm.gray,extent=apertureaxis)
+    yn=tkmb.askyesno(title="Save?", message="Do you want to save this figure ?")
+    if yn :
+        filepath=tkfd.asksaveasfile(defaultextension=".png")
+        if filepath.name :
             circleimg=np.zeros([nbpx,nbpx,3],dtype=np.uint8)
             for i in range(nbpx) :
                 for j in range(nbpx) :
                     for k in range(3) :
                         circleimg[i][j][k]=int(circle[i][j]*255)
             imsave(filepath.name,circleimg)
-        plt.close()
+    plt.close()
     
 #Asking for aperture imagefile
 def LoadImgCallBack() :

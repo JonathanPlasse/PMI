@@ -1,0 +1,38 @@
+The GUI comes in three main parts : aperture options, display options and
+variables.
+
+Aperture options :
+This part contains 5 buttons :
+-Square/Rectangle/Circular Aperture buttons allows you to create an aperture
+image of said form and save it. When you click on it, you will be asked for
+the dimension(s) of the form, e.g. the radius for the circle. A preview will
+then be displayed and you will be asked if you want to save it. If you do,
+you will be asked where and under what name you want to save it.
+-Load Aperture button allows you to load your custom image to be used as aperture.
+Keep in mind that your image must be square -i.e. NxN pixels- for the program to
+work correctly and that at the moment, the program converts the images in binary form,
+meaning that each pixel will be seen as either 1 or 0.
+-Modulate transmittance allows you to modify the value of the arrays representing
+apertures using the absolute value of a sine function. You will be asked whether
+you want to modulate the value along the vertical axis or not, and then along the
+horizontal axis.
+
+Display options :
+-Show Aperture is fairly self-explanatory, it only displays the array representing
+the aperture as an image.
+-Show FT Diffraction Pattern is once again fairly self-explanatory, it displays the
+diffraction pattern obtained by using the Fourier transform of the aperture image.
+-Close Current Window closes the active Matplotlib window.
+-Show Variables brings up a window containing the values of the variables listed
+thereafter.
+
+Variables :
+Contains 4 entry fields and buttons, one pair for each variable. Those variables
+are the wavelength, the real size of images, the distance between the plane containing
+the aperture and the plane containing the pattern, and lastly the size of images
+in pixels. To update the values, you have to type in the value you want and then click
+the button of the variable you want to modify.
+
+The last button, Close all plots and exit triggers the destruction of all Matplotlib
+windows, of the main GUI window and kills the program. Use this button if you think the
+program does not properly terminate otherwise.
