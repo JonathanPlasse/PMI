@@ -9,7 +9,7 @@ import numpy as np
 from scipy.fftpack import fft2,fftshift
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
-from aperture_func import load_map,x_sine_transmittance,y_sine_transmittance
+from aperture_func import load_map
 
 z=1  #distance between the aperture plane and the screen where the diffraction pattern shows in meters
 lamb=500e-9 #wavelength in meters
@@ -31,7 +31,6 @@ def ft_diffpattern(Map) :
 #%%Test
 if __name__=="__main__" :
     Map=load_map("../resources/apertures/square_test.png")
-    Map=y_sine_transmittance(x_sine_transmittance(Map))
     ft_diffpattern(Map)
     plt.figure()
     apaxis=np.array([-a,a,-a,a])

@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""
+Created on Mon Feb 13 20:41:55 2018
+
+@author: ROHR Julien, ROUSSEL Loïc, PLASSE Jonathan, NAILI Kamel
+"""
+
 import matplotlib
 matplotlib.use('TkAgg')     #necessary to show plots at the same time as the GUI
 
