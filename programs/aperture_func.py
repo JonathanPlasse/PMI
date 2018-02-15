@@ -10,7 +10,8 @@ from imageio import imread
 import numpy as np
 
 def RGBtoBW(Arr) :
-    """Converts an 'Image array' using the RGB system to a binary array"""
+    """Converts an 'Image array' using the RGB system to a binary array, 
+    i.e. an array containing only ones and zeros."""
     ArrBW=np.zeros(Arr.shape[:2])
     for i in range(Arr.shape[0]) :
         for j in range(Arr.shape[1]) :
@@ -22,7 +23,13 @@ def RGBtoBW(Arr) :
     return ArrBW
     
 def load_map(filepath) :
-    Map=RGBtoBW(imread(filepath))
+    """Loads an image located by its filepath (given as a string) and using the .png format and converts it into an array. 
+    Loads a default square aperture image if the image is not square, i.e. NxN pixels."""
+    LoadArray=imread(filepath)
+    if LoadArray.shape[0]!=LoadArray.shape[1] :
+        print("Please use a square image, i.e. NxN pixels")
+        LoadArray=imread("../resources/apertures/square_test.png")
+    Map=RGBtoBW(LoadArray)
     return Map
 
 def x_sine_transmittance(Map) :
