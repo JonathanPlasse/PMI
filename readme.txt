@@ -7,11 +7,14 @@ aperture to a slit, as well as the frames used in said animation
 
 
 About the programs in general :
-The programs can be executed by typing 'python nameofprogram.py' in the console
+The programs can be executed by typing 'python3 nameofprogram.py' in the console
 on Unix-like systems or by using an editor, such as spyder.
 
 If an error is raised concerning imageio, install it with the instructions
 from http://imageio.readthedocs.io/en/latest/installation.html.
+
+If an error is raised concerning numba, check if you use conda,
+if not, just comment the import line of numba and the '@jit' in the programs.
 
 About aperture_func.py :
 This program contains functions to load and modify images to be used as apertures
