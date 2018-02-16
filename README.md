@@ -3,9 +3,13 @@ Projet Mathématique Informatique
 
 ## Structure :
 programs contains python source code
+
 resources contains aperture images
+
 report contains the report and the figures used in it
+
 Circ2SlitAnim contains an animation showing the transitionfrom a circular
+
 aperture to a slit, as well as the frames used in said animation
 
 ## About the programs in general :
