@@ -283,7 +283,7 @@ J_1\left(\frac{k\rho R}{z}\right)
 \]
 
 \section{FFT Explaination}
-	\subsection{Theorie}
+	\subsection{Theory}
 Fourier analysis is fundamentally a method for expressing a function as a sum of periodic components, and for recovering the function from those components. When both the function and its Fourier transform are replaced with discretized counterparts, it is called the discrete Fourier transform (DFT). The DFT is in general defined for complex inputs and outputs. 
 
 There are many ways to define the DFT. In the implementation of Python, the DFT is defined as
@@ -316,44 +316,41 @@ In two dimensions, the DFT is defined as
 \quad
 k\in[0;M[l\in[0;N[\]
 
-	\subsection{Explication sur la taille de l’image de la figure de diffraction}
+	\subsection{About the diffraction figure scaling}
 \[
 \begin{array}{ccc}
 \includegraphics[scale=0.1]{./figures/schema-5-1-crop.png} &
 \substack{\rightarrow\\
-z\text{(distance between the plans)}\\
+z\text{(distance between the planes)}\\
 \rightsquigarrow\\
-\lambda\text{(wawe length)}}
+\lambda\text{(wavelength)}}
 & \includegraphics[scale=0.1]{./figures/schema-5-2-crop.png}
 \end{array}
 \]
 
-La diffraction par une fente infinitésimale soit si on isole un pixel est caractérisé par  
+The diffraction by an elementary aperture, i.e. a pixel, is described by
+$\sin(\theta)= \frac{\lambda}{a}$  with a the characteristic size of the aperture. 
 
-$\sin(\theta)= \frac{\lambda}{a}$  avec a la largeur caractéristique de la fente 
-
-En considérant le plan orthogonal a l’axe de propagation $z$ et formé des axes $x$ et $y$,   
-
-On a en projetant sur un des axes, $x$ par exemple :
+Considering a plane orthogonal to the propagation axis $z$ and thus containing the $x$ and $y$ axis, we obtain by projecting on the axis $x$ for instance :
 
 \[\sin(\theta)=\frac{\mathrm{d}x}{\mathrm{d}z}\]
 
-Ainsi
+Thus :
 
 \[\frac{\mathrm{d}x}{\mathrm{d}z}= \frac{\lambda}{a}\]
 
-Ainsi
+And thus :
 
 \[\frac{\Delta x}{\Delta z}= \frac{\lambda}{a}\]
 
-Avec les notations du probleme $a=2size$, $\Delta x=2i_{size}$ (pour un pixel), et$\Delta z = z$
+With the notations used before, $a=2size$, $\Delta x=2i_{size}$ (for one pixel) and $\Delta z = z$
 
-Ainsi 
-\[\frac{i_{size}\text{ (pour un pixel)}}{z}=\frac{\lambda}{size}\]
+Thus :
+\[\frac{i_{size}\text{ (for one pixel)}}{z}=\frac{\lambda}{size}\]
 
-Ainsi
-\[i_{size}\text{ (pour un pixel)}=\frac{\lambda z}{size}\]
+Thus :
+\[i_{size}\text{ (for one pixel)}=\frac{\lambda z}{size}\]
 
-Ainsi sachant qu'il y a $(ech-1)$ pixels sur une ligne de l’image, on aura
-\[i_{size}\text{ (pour l'image entière)}=\frac{\lambda z}{size}(ech-1)\]
+Since there are $(ech-1)$ pixels on one line of the image, we obtain :
+\[i_{size}\text{ (whole image)}=\frac{\lambda z}{size}(ech-1)\]
 \end{document}}
