@@ -5,6 +5,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage[math]{cellspace}
 \usepackage{graphicx}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \DeclareMathOperator{\sinc}{sinc}
@@ -18,7 +19,7 @@
 \section{History of Diffraction}
 The diffraction is a phenomenon discovered in 1665 by Francesco Maria Grimaldi. This physicist, whose interest lied in optics and astronomy, enjoyed drilling tiny openings in a black curtain exposed to the sun. He used these sources of improvised light and interposed on the path of the beam either slots of different shape or hair or even feathers of birds. Each time, he observed on a screen placed behind these objects, iridescent fringes located apart from the normal geometrical route. He then made the assumption that the change in trajectory of the light -caused by the presence of an hurdle or an opening- was the manifestation of a new phenomenon, namely the diffraction. His discovery was published in 1665 -after his death- in "Physicomathesis de lumine, coloribus, et iride".
 
-Christian Huygens ( 1629-1695 ) was also interested in this new phenomenon. In 1690 is published "Traité de la lumière" in which he lays down the foundations for the undulatory theory of the light. By likening light with waves on the surface of water and the sound waves in the air, he assumed that light propagated in a spherical pattern -thus leading to the concept of wave of light-, and that every point reached by the wave behaved as a new source called "secondary source". However, his analogy went too far, since he believed that light vibration was longitudinal and needed a material medium to propagate. Unable to define exactly the nature of this medium, he called it "the ether". 
+Christian Huygens ( 1629-1695 ) was also interested in this new phenomenon. In 1690 is published "Trait\'e de la lumi\`ere" in which he lays down the foundations for the undulatory theory of the light. By likening light with waves on the surface of water and the sound waves in the air, he assumed that light propagated in a spherical pattern -thus leading to the concept of wave of light-, and that every point reached by the wave behaved as a new source called "secondary source". However, his analogy went too far, since he believed that light vibration was longitudinal and needed a material medium to propagate. Unable to define exactly the nature of this medium, he called it "the ether". 
 
 The theory of wavelets allowed him to find the law of Snell-Descartes for refraction. This theory was complemented by Isaac Newton ( 1642-1727 ), who also observed diffraction and the localized fringes infered by thin blades but developed a corpuscular theory. 
 
@@ -281,4 +282,78 @@ E(\rho,\omega)=\frac{R}{j\rho} \exp\left(jk\left(z+\frac{\rho^2}{2z}\right)\righ
 J_1\left(\frac{k\rho R}{z}\right)
 \]
 
+\section{FFT Explaination}
+	\subsection{Theorie}
+Fourier analysis is fundamentally a method for expressing a function as a sum of periodic components, and for recovering the function from those components. When both the function and its Fourier transform are replaced with discretized counterparts, it is called the discrete Fourier transform (DFT). The DFT is in general defined for complex inputs and outputs. 
+
+There are many ways to define the DFT. In the implementation of Python, the DFT is defined as
+
+\[A_k=\sum_{m=0}^{n-1}a_m\left\lbrace-2\pi i\frac{mk}{n}\right\rbrace\
+\quad
+k\in[0;n[\]
+
+As far as normalisation is concerned ,the default normalization has the direct transforms unscaled. 
+
+The fast Fourier transform (FFT) is an algorithm for calculating discrete Fourier transform (DFT).Its complexity varies in $O(n\log n)$ with the number n of points used while a current DFT varies in $O(n^2)$. The calculation time of the fast algorithm can be 100 times shorter than the calculation using the DFT definition formula 
+
+In 1965, James Cooley and John Tukey, two mathematicians in signal processing, published an fundamental article dealt with Fast Fourier transform and infered the massive adoption of this method. This method became mainstream in the field of digital signal processing and telecommunication.  
+
+This algorithm is commonly used to transform discrete time domain data in the frequency domain, particularly in spectrum analyzers. Its efficiency makes it possible to carry out filtering by modifying the spectrum.  
+
+Because the discrete Fourier transform separates its input into components that contribute at discrete frequencies, using a list where each discretization are gathered seems to be convenient. 
+
+That's hinges on a function pulled out from a package called numpy in Python : $fft(a)$ with a an array (can be complex). 
+
+If a array $A$ defined as $fft(a)$, then $A[0]$ contains the zero-frequency term (the sum of the signal), which is always purely real for real inputs. Then $A\left[1:\frac{n}{2}\right]$ contains the positive-frequency terms, and $A\left[\frac{n}{2}+1:\right]$ contains the negative-frequency terms, in order of decreasingly negative frequency. For an even number of input points, $A\left[\frac{n}{2}\right]$ represents both positive and negative Nyquist frequency, and is also purely real for real input. For an odd number of input points, $A\left[\frac{n-1}{2}\right]$ contains the largest positive frequency, while $A\left[\frac{n+1}{2}\right]$ contains the largest negative frequency. 
+
+To return an array whose frequencies are corresponding with elements in the output, the function $fftfreq()$ should be harnessed. Otherwise, $fftshift()$ is a routine to shift transforms and their frequencies to put the zero-frequency components in the middle. 
+
+Inasmuch as in this project, array in two dimensions needed to depict the diffraction patterns, a FFT allowing in argument this kind of array is regarded as a blessing. Numpy afford a function called $fft2()$ which fills out the job.  
+
+In two dimensions, the DFT is defined as 
+
+\[A_{kl}=\sum_{m=0}^{M-1}\sum_{n=0}^{N-1}a_{mn}\left\lbrace-2\pi i\left(\frac{mk}{M}+\frac{nl}{N}\right)\right\rbrace\
+\quad
+k\in[0;M[l\in[0;N[\]
+
+	\subsection{Explication sur la taille de l’image de la figure de diffraction}
+\[
+\begin{array}{ccc}
+\includegraphics[scale=0.1]{./figures/schema-5-1-crop.png} &
+\substack{\rightarrow\\
+z\text{(distance between the plans)}\\
+\rightsquigarrow\\
+\lambda\text{(wawe length)}}
+& \includegraphics[scale=0.1]{./figures/schema-5-2-crop.png}
+\end{array}
+\]
+
+La diffraction par une fente infinitésimale soit si on isole un pixel est caractérisé par  
+
+$\sin(\theta)= \frac{\lambda}{a}$  avec a la largeur caractéristique de la fente 
+
+En considérant le plan orthogonal a l’axe de propagation $z$ et formé des axes $x$ et $y$,   
+
+On a en projetant sur un des axes, $x$ par exemple :
+
+\[\sin(\theta)=\frac{\mathrm{d}x}{\mathrm{d}z}\]
+
+Ainsi
+
+\[\frac{\mathrm{d}x}{\mathrm{d}z}= \frac{\lambda}{a}\]
+
+Ainsi
+
+\[\frac{\Delta x}{\Delta z}= \frac{\lambda}{a}\]
+
+Avec les notations du probleme $a=2size$, $\Delta x=2i_{size}$ (pour un pixel), et$\Delta z = z$
+
+Ainsi 
+\[\frac{i_{size}\text{ (pour un pixel)}}{z}=\frac{\lambda}{size}\]
+
+Ainsi
+\[i_{size}\text{ (pour un pixel)}=\frac{\lambda z}{size}\]
+
+Ainsi sachant qu'il y a $(ech-1)$ pixels sur une ligne de l’image, on aura
+\[i_{size}\text{ (pour l'image entière)}=\frac{\lambda z}{size}(ech-1)\]
 \end{document}}
