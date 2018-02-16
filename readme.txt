@@ -33,3 +33,8 @@ About GUI.py :
 This program contains the code for a Graphical User Interface which regroups
 the main functions of the other programs -plus a few others- in order to
 make the operations more user-friendly.
+
+About diffraction_double_integrale.py :
+This program showcases an example of diffraction for a square and a circular
+apertures using integration. Very sensitive to parameters, it needs to be
+optimized.
