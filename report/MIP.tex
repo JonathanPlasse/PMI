@@ -5,6 +5,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage[math]{cellspace}
 \usepackage{graphicx}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \DeclareMathOperator{\sinc}{sinc}
@@ -311,4 +312,48 @@ Inasmuch as in this project, array in two dimensions needed to depict the diffra
 
 In two dimensions, the DFT is defined as 
 
+\[A_{kl}=\sum_{m=0}^{M-1}\sum_{n=0}^{N-1}a_{mn}\left\lbrace-2\pi i\left(\frac{mk}{M}+\frac{nl}{N}\right)\right\rbrace\
+\quad
+k\in[0;M[l\in[0;N[\]
+
+	\subsection{Explication sur la taille de l’image de la figure de diffraction}
+\[
+\begin{array}{ccc}
+\includegraphics[scale=0.1]{./figures/schema-5-1-crop.png} &
+\substack{\rightarrow\\
+z\text{(distance between the plans)}\\
+\rightsquigarrow\\
+\lambda\text{(wawe length)}}
+& \includegraphics[scale=0.1]{./figures/schema-5-2-crop.png}
+\end{array}
+\]
+
+La diffraction par une fente infinitésimale soit si on isole un pixel est caractérisé par  
+
+$\sin(\theta)= \frac{\lambda}{a}$  avec a la largeur caractéristique de la fente 
+
+En considérant le plan orthogonal a l’axe de propagation $z$ et formé des axes $x$ et $y$,   
+
+On a en projetant sur un des axes, $x$ par exemple :
+
+\[\sin(\theta)=\frac{\mathrm{d}x}{\mathrm{d}z}\]
+
+Ainsi
+
+\[\frac{\mathrm{d}x}{\mathrm{d}z}= \frac{\lambda}{a}\]
+
+Ainsi
+
+\[\frac{\Delta x}{\Delta z}= \frac{\lambda}{a}\]
+
+Avec les notations du probleme $a=2size$, $\Delta x=2i_{size}$ (pour un pixel), et$\Delta z = z$
+
+Ainsi 
+\[\frac{i_{size}\text{ (pour un pixel)}}{z}=\frac{\lambda}{size}\]
+
+Ainsi
+\[i_{size}\text{ (pour un pixel)}=\frac{\lambda z}{size}\]
+
+Ainsi sachant qu'il y a $(ech-1)$ pixels sur une ligne de l’image, on aura
+\[i_{size}\text{ (pour l'image entière)}=\frac{\lambda z}{size}(ech-1)\]
 \end{document}}
